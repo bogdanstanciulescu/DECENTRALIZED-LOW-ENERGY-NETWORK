@@ -6,7 +6,7 @@ Aceasta poate fi implementată rapid și la costuri reduse, la nivelul instituț
 Programul funcționează pe baza plăcilor de dezvoltare Heltec, cu microcontroller ESP32, modul LoRa și modul de încărcare a acumulatorului Li-Po. 
 Alimentarea și încărcarea firmware-ului se realizează prin portul USB-C. 
 Modulul LoRa permite transmiterea rapidă a mesajelor în caz de urgență. Microcontrollerul ESP32 se ocupă de portalul captiv de tip web server și de procesarea mesajelor.
-https://docs.heltec.org/en/node/esp32/_images/055.jpg
+[heltec](https://github.com/user-attachments/assets/dbe7e38d-718f-4415-877b-601e86b4a70f)
 Funcționalitate:
 Toată interacțiunea dintre utilizator și dispozitiv se realizează prin conectarea la rețeaua wireless a dispozitivului, după care utilizatorul este redirecționat într-un portal captiv web, de unde poate primi sau trimite mesaje.
 Aceste mesaje pot fi citite timp de 10 minute, după care se șterg automat pentru a elibera memoria volatilă a microcontrollerului, dar ele pot fi salvate în format PDF prin butonul „Printează”.
