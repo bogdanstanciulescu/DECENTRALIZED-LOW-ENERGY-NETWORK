@@ -50,9 +50,11 @@ Pasul2:Deschiderea folderului în Arduino IDE.
 Pasul3:Încărcarea sketch-ului în Heltec ESP32 LoRa V3.
 Pasul4: Alimentează placa și conectează-te la rețeaua Wi-Fi emisă de aceasta.
 Pasul5: Acum ești protejat de posibile întreruperi ale rețelelor GSM în caz de dezastru.
-Resurse externe:
-Pentru documentare, s-au folosit, în afara resurselor indicate în restul acestui fișier, următoarele:
-https://en.wikipedia.org/wiki/LoRa
-https://docs.heltec.org/en/node/esp32/wifi_lora_32/index.html
-https://espressif.github.io/arduino-esp32/package_esp32_index.json
-https://resource.heltec.cn/download/package_heltec_esp32_index.json
+Resurse externe: Pentru documentare, s-au folosit, în afara resurselor indicate în restul acestui fișier, următoarele: 
+https://en.wikipedia.org/wiki/LoRa 
+https://docs.heltec.org/en/node/esp32/wifi_lora_32/index.html 
+https://docs.heltec.org/en/node/esp32/_images/055.jpg
+https://espressif.github.io/arduino-esp32/package_esp32_index.json https://resource.heltec.cn/download/package_heltec_esp32_index.json
+Concluzie:
+Am realizat o aplicație de comunicare prin mesaje text care nu necesită resurse semnificative, este descentralizată, și care poate fi folosită în caz de dezastre naturale, din cauza cărora rămânem fără current și semnal GSM.
+
