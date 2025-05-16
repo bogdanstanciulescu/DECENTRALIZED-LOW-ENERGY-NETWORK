@@ -1,23 +1,31 @@
 # DECENTRALIZED-LOW-ENERGY-NETWORK
 Introducere:
 D.L.E.N. este o soluție de comunicare prin mesaje (de urgență/de rezervă pentru uz civil) și poate fi ușor adaptată pentru controlul automatizărilor prin mesaje.
-Aplicația se adresează protecției civililor și a echipamentelor automatizate, oferind un canal de comunicare în caz de urgență (dezastre naturale, război etc.) cu autoritățile sau alți civili. Aceasta poate fi implementată rapid și la costuri reduse, la nivelul instituțiilor publice, proprietăților private sau pentru persoane individuale.
-Programul funcționează pe baza plăcilor de dezvoltare Heltec, cu microcontroller ESP32, modul LoRa și modul de încărcare a acumulatorului Li-Po. Alimentarea și încărcarea firmware-ului se realizează prin portul USB-C. Modulul LoRa permite transmiterea rapidă a mesajelor în caz de urgență. Microcontrollerul ESP32 se ocupă de portalul captiv de tip web server și de procesarea mesajelor.
+Aplicația se adresează protecției civililor și a echipamentelor automatizate, oferind un canal de comunicare în caz de urgență (dezastre naturale, război etc.) cu autoritățile sau alți civili.
+Aceasta poate fi implementată rapid și la costuri reduse, la nivelul instituțiilor publice, proprietăților private sau pentru persoane individuale.
+Programul funcționează pe baza plăcilor de dezvoltare Heltec, cu microcontroller ESP32, modul LoRa și modul de încărcare a acumulatorului Li-Po. 
+Alimentarea și încărcarea firmware-ului se realizează prin portul USB-C. 
+Modulul LoRa permite transmiterea rapidă a mesajelor în caz de urgență. Microcontrollerul ESP32 se ocupă de portalul captiv de tip web server și de procesarea mesajelor.
+https://docs.heltec.org/en/node/esp32/_images/055.jpg
 Funcționalitate:
 Toată interacțiunea dintre utilizator și dispozitiv se realizează prin conectarea la rețeaua wireless a dispozitivului, după care utilizatorul este redirecționat într-un portal captiv web, de unde poate primi sau trimite mesaje.
- 	Aceste mesaje pot fi citite timp de 10 minute, după care se șterg automat pentru a elibera memoria volatilă a microcontrollerului, dar ele pot fi salvate în format PDF prin butonul „Printează”.
-Interfața este simplă, gândită pentru orice utilizator, indiferent de nivelul de alfabetizare digitală. Aceasta este concepută să semene cu aplicațiile de mesagerie (Messenger, WhatsApp etc.).
+Aceste mesaje pot fi citite timp de 10 minute, după care se șterg automat pentru a elibera memoria volatilă a microcontrollerului, dar ele pot fi salvate în format PDF prin butonul „Printează”.
+Interfața este simplă, gândită pentru orice utilizator, indiferent de nivelul de alfabetizare digitală. 
+Aceasta este concepută să semene cu aplicațiile de mesagerie (Messenger, WhatsApp etc.).
 Mesajele transmise primesc un ID și numele utilizatorului – acesta poate fi modificat.
-Pentru a mări raza de acțiune, mesajele sunt retransmise de fiecare placă de dezvoltare, similar unei rețele mesh. ID-ul este modificat pentru a reflecta traseul mesajului. Dacă mesajul ajunge înapoi la expeditor sau este retransmis de mai mult de 5 ori, acesta este ignorat și nu mai este retransmis.
+Pentru a mări raza de acțiune, mesajele sunt retransmise de fiecare placă de dezvoltare, similar unei rețele mesh. 
+ID-ul este modificat pentru a reflecta traseul mesajului. Dacă mesajul ajunge înapoi la expeditor sau este retransmis de mai mult de 5 ori, acesta este ignorat și nu mai este retransmis.
 Proiectare:
 Codul a fost scris în Arduino IDE pentru mesageria LoRa și web serverul de tip portal captiv. Acesta este conceput pentru a funcționa pe o placă de dezvoltare open-source Heltec ESP32 LoRa V3.
 Costurile de operare sunt scăzute, deoarece consumul de energie este de aproximativ 1W la o tensiune de 5V (curent direct sau dintr-o celulă Li-Po la 3,7V).
 Spre deosebire de o rețea tradițională GSM, D.L.E.N. poate asigura comunicarea chiar și în situații în care rețelele de curent electric sunt afectate.
 Pentru a-i oferi rezistență și portabilitate, există și o carcasă printată 3D din PLA, cu infill de 100%.
 Protocolul de comunicare:
-LoRa (de la „Long Range”, uneori abreviat ca „LR”) este o tehnologie fizică proprietară de comunicații radio. LoRa utilizează benzi de radiofrecvență sub-gigahertz fără licență: EU433 (LPD433) sau EU868 (863–870/873 MHz) în Europa; AU915/AS923-1 (915–928 MHz) în America de Sud; US915 (902–928 MHz) în America de Nord; IN865 (865–867 MHz) în India; și AS923 (915–928 MHz) în Asia.
+LoRa (de la „Long Range”, uneori abreviat ca „LR”) este o tehnologie fizică proprietară de comunicații radio. LoRa utilizează benzi de radiofrecvență sub-gigahertz fără licență:
+EU433 (LPD433) sau EU868 (863–870/873 MHz) în Europa; AU915/AS923-1 (915–928 MHz) în America de Sud; US915 (902–928 MHz) în America de Nord; IN865 (865–867 MHz) în India; și AS923 (915–928 MHz) în Asia.
 LoRa permite transmisii pe distanțe lungi cu consum redus de energie.
-Este una dintre cele mai populare tehnologii de rețea pentru senzori wireless cu consum redus de energie, utilizată în implementarea Internetului Lucrurilor (IoT), oferind comunicații pe distanțe de peste 2 km – în comparație cu tehnologii precum Zigbee sau Bluetooth, dar cu rate de transfer mai mici.
+Este una dintre cele mai populare tehnologii de rețea pentru senzori wireless cu consum redus de energie, 
+utilizată în implementarea Internetului Lucrurilor (IoT), oferind comunicații pe distanțe de peste 2 km – în comparație cu tehnologii precum Zigbee sau Bluetooth, dar cu rate de transfer mai mici.
 Interfața:
 Interfața este una simplă care este accesibilă tuturor indifferent de vârstă.
 Tehnologii utilizate:
