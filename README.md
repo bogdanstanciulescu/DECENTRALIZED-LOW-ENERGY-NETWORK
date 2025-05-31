@@ -1,60 +1,212 @@
-# DECENTRALIZED-LOW-ENERGY-NETWORK
-Introducere:
-D.L.E.N. este o soluție de comunicare prin mesaje (de urgență/de rezervă pentru uz civil) și poate fi ușor adaptată pentru controlul automatizărilor prin mesaje.
-Aplicația se adresează protecției civililor și a echipamentelor automatizate, oferind un canal de comunicare în caz de urgență (dezastre naturale, război etc.) cu autoritățile sau alți civili.
-Aceasta poate fi implementată rapid și la costuri reduse, la nivelul instituțiilor publice, proprietăților private sau pentru persoane individuale.
-Programul funcționează pe baza plăcilor de dezvoltare Heltec, cu microcontroller ESP32, modul LoRa și modul de încărcare a acumulatorului Li-Po. 
-Alimentarea și încărcarea firmware-ului se realizează prin portul USB-C. 
-Modulul LoRa permite transmiterea rapidă a mesajelor în caz de urgență. Microcontrollerul ESP32 se ocupă de portalul captiv de tip web server și de procesarea mesajelor.
-[heltec](https://github.com/user-attachments/assets/dbe7e38d-718f-4415-877b-601e86b4a70f)
-Funcționalitate:
-Toată interacțiunea dintre utilizator și dispozitiv se realizează prin conectarea la rețeaua wireless a dispozitivului, după care utilizatorul este redirecționat într-un portal captiv web, de unde poate primi sau trimite mesaje.
-Aceste mesaje pot fi citite timp de 10 minute, după care se șterg automat pentru a elibera memoria volatilă a microcontrollerului, dar ele pot fi salvate în format PDF prin butonul „Printează”.
-Interfața este simplă, gândită pentru orice utilizator, indiferent de nivelul de alfabetizare digitală. 
-Aceasta este concepută să semene cu aplicațiile de mesagerie (Messenger, WhatsApp etc.).
-Mesajele transmise primesc un ID și numele utilizatorului – acesta poate fi modificat.
-Pentru a mări raza de acțiune, mesajele sunt retransmise de fiecare placă de dezvoltare, similar unei rețele mesh. 
-ID-ul este modificat pentru a reflecta traseul mesajului. Dacă mesajul ajunge înapoi la expeditor sau este retransmis de mai mult de 5 ori, acesta este ignorat și nu mai este retransmis.
-Proiectare:
-Codul a fost scris în Arduino IDE pentru mesageria LoRa și web serverul de tip portal captiv. Acesta este conceput pentru a funcționa pe o placă de dezvoltare open-source Heltec ESP32 LoRa V3.
-Costurile de operare sunt scăzute, deoarece consumul de energie este de aproximativ 1W la o tensiune de 5V (curent direct sau dintr-o celulă Li-Po la 3,7V).
-Spre deosebire de o rețea tradițională GSM, D.L.E.N. poate asigura comunicarea chiar și în situații în care rețelele de curent electric sunt afectate.
-Pentru a-i oferi rezistență și portabilitate, există și o carcasă printată 3D din PLA, cu infill de 100%.
-Protocolul de comunicare:
-LoRa (de la „Long Range”, uneori abreviat ca „LR”) este o tehnologie fizică proprietară de comunicații radio. LoRa utilizează benzi de radiofrecvență sub-gigahertz fără licență:
-EU433 (LPD433) sau EU868 (863–870/873 MHz) în Europa; AU915/AS923-1 (915–928 MHz) în America de Sud; US915 (902–928 MHz) în America de Nord; IN865 (865–867 MHz) în India; și AS923 (915–928 MHz) în Asia.
-LoRa permite transmisii pe distanțe lungi cu consum redus de energie.
-Este una dintre cele mai populare tehnologii de rețea pentru senzori wireless cu consum redus de energie, 
-utilizată în implementarea Internetului Lucrurilor (IoT), oferind comunicații pe distanțe de peste 2 km – în comparație cu tehnologii precum Zigbee sau Bluetooth, dar cu rate de transfer mai mici.
-Interfața:
-Interfața este una simplă care este accesibilă tuturor indifferent de vârstă.
-Tehnologii utilizate:
-•	Arduino.h – bibliotecă ce conține multe definiții și articole standard.
-•	WiFi.h – bibliotecă pentru crearea punctului de acces.
-•	DNSServer.h – bibliotecă pentru serverul DNS al portalului captiv.
-•	WebServer.h – bibliotecă pentru web server.
-•	RadioLib.h – bibliotecă pentru funcționalitatea modulului LoRa.
-Instalare:
-Pentru a obține o aplicație complet funcțională, este necesar cel puțin un Heltec ESP32 LoRa V3, care dispune de conectivitate Wi-Fi.
-Pasul 0:
-Înainte de clonarea repository-ului, este necesară instalarea următoarelor:
-•	Driverul pentru conexiune USB la Heltec ESP32 LoRa V3:
-https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads
-•	Arduino IDE pentru încărcarea sketch-urilor pe Heltec ESP32 LoRa V3.
-•	Adăugarea următoarelor linkuri la preferințe în Arduino IDE:
-o	https://espressif.github.io/arduino-esp32/package_esp32_index.json
-o	https://resource.heltec.cn/download/package_heltec_esp32_index.json
-•	Descărcarea din Library Manager și Boards Manager a plăcii Heltec ESP32 LoRa V3.
-Pasul1:Copierea fișierelor într-un folder de lucru.
-Pasul2:Deschiderea folderului în Arduino IDE.
-Pasul3:Încărcarea sketch-ului în Heltec ESP32 LoRa V3.
-Pasul4: Alimentează placa și conectează-te la rețeaua Wi-Fi emisă de aceasta.
-Pasul5: Acum ești protejat de posibile întreruperi ale rețelelor GSM în caz de dezastru.
-Resurse externe: Pentru documentare, s-au folosit, în afara resurselor indicate în restul acestui fișier, următoarele: 
-https://en.wikipedia.org/wiki/LoRa 
-https://docs.heltec.org/en/node/esp32/wifi_lora_32/index.html 
-https://docs.heltec.org/en/node/esp32/_images/055.jpg
-https://espressif.github.io/arduino-esp32/package_esp32_index.json https://resource.heltec.cn/download/package_heltec_esp32_index.json
-Concluzie:
-Am realizat o aplicație de comunicare prin mesaje text care nu necesită resurse semnificative, este descentralizată, și care poate fi folosită în caz de dezastre naturale, din cauza cărora rămânem fără current și semnal GSM.
+# D.L.E.N. – Dispozitiv LoRa de Emitere a Notificărilor
 
+## 📌 Introducere
+
+**D.L.E.N.** este o soluție de comunicare prin mesaje text destinată uzului civil, în special în situații de urgență (dezastre naturale, război, etc.) sau ca metodă alternativă de control pentru automatizări. Proiectul oferă un canal de comunicare fiabil, descentralizat și accesibil, ce poate funcționa în absența infrastructurii GSM și a rețelelor electrice.
+
+Aplicația este implementabilă rapid și cu costuri reduse, adresându-se instituțiilor publice, proprietăților private sau utilizatorilor individuali. Sistemul se bazează pe plăci de dezvoltare **Heltec ESP32 LoRa V3**, dotate cu microcontroller ESP32, modul LoRa și încărcare Li-Po prin USB-C.
+
+---
+
+## ⚙️ Funcționalitate
+
+- Conectare prin rețeaua Wi-Fi emisă de dispozitiv
+- Portal captiv redirecționează utilizatorul către o interfață web
+- Trimitere și recepție mesaje în stil aplicații de mesagerie (Messenger, WhatsApp)
+- Mesajele au un timp de viață de **10 minute**, dar pot fi salvate în PDF
+- Fiecare mesaj are un **ID unic** și un **nume de utilizator** (modificabil)
+- **Retransmitere automată** a mesajelor între plăci (tip rețea mesh)
+- Mesajele sunt ignorate dacă:
+  - Se întorc la expeditor
+  - Sunt retransmise de mai mult de 5 ori
+
+---
+
+## 🧩 Proiectare
+
+- Scris în **Arduino IDE**
+- Rulat pe **Heltec ESP32 LoRa V3**
+- Consum redus de energie: ~1W la 5V
+- Funcționează fără infrastructură GSM
+- Carcasă 3D printată din PLA (infill 100%) pentru protecție și portabilitate
+
+---
+
+## 📡 Protocolul de comunicare: LoRa
+
+LoRa (Long Range) este o tehnologie de comunicație radio pe distanțe lungi, eficientă energetic și fără licență, utilizată frecvent în rețelele IoT.
+
+Dispozitivul folosește implicit **banda EU868**, dar poate fi adaptat ușor pentru următoarele benzi disponibile în funcție de regiune:
+
+- **EU433 / EU868** – Europa
+- **US915** – America de Nord
+- **AU915 / AS923** – Asia și America de Sud
+- **IN865** – India
+
+---
+
+## 🖥️ Interfața
+
+- Interfață simplă, intuitivă și accesibilă oricui, indiferent de vârstă sau nivel digital
+- Inspirată de aplicațiile de chat populare
+
+---
+
+## 🛠️ Tehnologii utilizate
+
+- `Arduino.h` – definiții și funcții standard
+- `WiFi.h` – creare punct de acces Wi-Fi
+- `DNSServer.h` – DNS pentru portal captiv
+- `WebServer.h` – server web
+- `RadioLib.h` – comunicație LoRa
+
+---
+
+## 🔧 Instalare
+
+### Cerințe:
+
+1. **Placă Heltec ESP32 LoRa V3**
+2. **Arduino IDE**
+3. **Driver USB Silabs**: [Descarcă aici](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
+
+### Configurare Arduino IDE:
+
+- Adaugă următoarele linkuri în `Preferences > Additional Board URLs`:
+  - `https://espressif.github.io/arduino-esp32/package_esp32_index.json`
+  - `https://resource.heltec.cn/download/package_heltec_esp32_index.json`
+
+- Instalează placa **Heltec ESP32 LoRa V3** din Boards Manager
+- Instalează bibliotecile necesare din Library Manager
+
+### Pași:
+
+1. Clonează repository-ul
+2. Deschide folderul proiectului în Arduino IDE
+3. Încarcă sketch-ul pe placa Heltec
+4. Alimentează placa (prin USB sau baterie Li-Po)
+5. Conectează-te la rețeaua Wi-Fi emisă de placă
+6. Accesează interfața web și începe comunicarea
+
+---
+
+## 🔗 Resurse externe
+
+- [LoRa – Wikipedia](https://en.wikipedia.org/wiki/LoRa)
+- [Documentație Heltec ESP32](https://docs.heltec.org/en/node/esp32/wifi_lora_32/index.html)
+- [Imagine schemă Heltec](https://docs.heltec.org/en/node/esp32/_images/055.jpg)
+- [ESP32 Board URL](https://espressif.github.io/arduino-esp32/package_esp32_index.json)
+- [Heltec Board URL](https://resource.heltec.cn/download/package_heltec_esp32_index.json)
+
+---
+
+## ✅ Concluzie
+
+**D.L.E.N.** este o aplicație robustă, descentralizată și ușor de implementat, oferind un canal de comunicare fiabil în situații critice, când infrastructura clasică (GSM, electricitate) poate fi compromisă. Ideală pentru situații de urgență, acest sistem poate reprezenta un element vital pentru protejarea vieții și a echipamentelor.
+
+---
+
+# 🌐 English Version
+
+## Introduction
+
+**D.L.E.N.** is a backup/emergency message communication solution designed for civil use. It can also be adapted to control automated equipment via messages. The system targets both civilian protection and automated systems management, offering a reliable communication channel during natural disasters, war, or network failures.
+
+This solution can be implemented quickly and at low cost for public institutions, private properties, or individuals. It is based on the **Heltec ESP32 LoRa V3** development board, which includes an ESP32 microcontroller, a LoRa module, and Li-Po charging via USB-C.
+
+---
+
+## Features
+
+- User connects to the device's Wi-Fi hotspot
+- Redirected to a captive portal with a messaging interface
+- Simple UI inspired by chat apps (Messenger, WhatsApp)
+- Messages last for **10 minutes** unless saved as PDF
+- Every message has a unique **ID** and a **customizable username**
+- Automatic retransmission of messages between boards (mesh-like behavior)
+- Messages are discarded if:
+  - They return to the sender
+  - They are retransmitted more than 5 times
+
+---
+
+## Design
+
+- Developed in **Arduino IDE**
+- Runs on **Heltec ESP32 LoRa V3**
+- Low power usage (~1W at 5V)
+- Fully operational without GSM or power grid
+- 3D printed PLA case (100% infill) for protection and mobility
+
+---
+
+## Communication Protocol: LoRa
+
+LoRa (Long Range) is a low-power, long-range radio communication protocol often used in IoT networks.
+
+This project uses the **EU868** band by default, but the following bands are also supported based on region:
+
+- **EU433 / EU868** – Europe
+- **US915** – North America
+- **AU915 / AS923** – Asia & South America
+- **IN865** – India
+
+---
+
+## Interface
+
+- Simple, intuitive, and easy to use regardless of age or digital literacy
+- Works like popular messaging platforms
+
+---
+
+## Dependencies & Libraries
+
+- `Arduino.h`
+- `WiFi.h`
+- `DNSServer.h`
+- `WebServer.h`
+- `RadioLib.h`
+
+---
+
+## Installation
+
+### Requirements
+
+1. **Heltec ESP32 LoRa V3 board**
+2. **Arduino IDE**
+3. **USB driver**: [Download from Silabs](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
+
+### Arduino IDE setup
+
+- Add to **Preferences > Additional Board URLs**:
+  - `https://espressif.github.io/arduino-esp32/package_esp32_index.json`
+  - `https://resource.heltec.cn/download/package_heltec_esp32_index.json`
+
+- Install the board and required libraries from the Library and Board Managers.
+
+### Steps
+
+1. Clone this repository
+2. Open the folder in Arduino IDE
+3. Upload the sketch to your Heltec board
+4. Power the device (USB or Li-Po)
+5. Connect to its Wi-Fi network
+6. Open the portal and start sending/receiving messages
+
+---
+
+## External Resources
+
+- [LoRa – Wikipedia](https://en.wikipedia.org/wiki/LoRa)
+- [Heltec Documentation](https://docs.heltec.org/en/node/esp32/wifi_lora_32/index.html)
+- [Board Image](https://docs.heltec.org/en/node/esp32/_images/055.jpg)
+- [ESP32 JSON](https://espressif.github.io/arduino-esp32/package_esp32_index.json)
+- [Heltec JSON](https://resource.heltec.cn/download/package_heltec_esp32_index.json)
+
+---
+
+## Final Notes
+
+**D.L.E.N.** is a lightweight, offline, and decentralized messaging platform for emergency use. It can operate during power outages and network failures, making it ideal for disaster preparedness or field deployment.
