@@ -123,8 +123,7 @@ const char htmlPage[] = R"=====(<!DOCTYPE html>
   </script>
 </body>
 </html>
-)====="; // Cod HTML și JavaScript complet este înăuntru (trunchiat aici pentru claritate)
-
+)====="; // Cod HTML și JavaScript
 // Adaugă un mesaj nou în istoric și salvează timpul lui
 void adaugaMesaj(const String& mesaj) {
   if (mesajIndex >= MAX_MESAJE) mesajIndex = 0;
